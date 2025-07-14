@@ -1,0 +1,3 @@
+# 忽略Pytorch/dataset文件夹及其所有内容
+Pytorch/dataset/
+Pytorch/logs/
