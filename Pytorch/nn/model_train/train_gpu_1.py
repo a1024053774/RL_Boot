@@ -1,8 +1,9 @@
+import torch
 import torchvision
 from torch import nn
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
-from model import * # 导入模型
+# from model import * # 导入模型
 import time
 
 # 准备数据集
@@ -21,10 +22,30 @@ print(f"Test data size: {test_data_size}") # 10000
 train_dataloader = DataLoader(train_data, batch_size=64)
 test_dataloader = DataLoader(test_data, batch_size=64)
 
+# 搭建神经网络
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.model = nn.Sequential(
+            nn.Conv2d(3 ,32, 5, 1, 2),
+            nn.MaxPool2d(2),
+            nn.Conv2d(32, 32, 5, 1, 2),
+            nn.MaxPool2d(2),
+            nn.Conv2d(32, 64, 5, 1, 2),
+            nn.MaxPool2d(2),
+            nn.Flatten(),
+            nn.Linear(1024, 64), # 64个输出,4*4的特征图经过展平后为4*4*64 = 2^10 = 1024 个输入特征
+            nn.Linear(64, 10) # 10个输出
+        )
+    def forward(self, x):
+        return self.model(x)
+
 net = Net()
+net = net.cuda()
 
 # 定义损失函数和优化器
 loss_function = nn.CrossEntropyLoss()
+loss_function = loss_function.cuda()
 learning_rate = 0.01
 optimizer = torch.optim.SGD(net.parameters(), lr=learning_rate)
 
@@ -48,6 +69,10 @@ for i in range(epoch):
     train_batches = 0
     for data in train_dataloader:
         imgs, targets = data
+
+        imgs = imgs.cuda()
+        targets = targets.cuda()
+
         outputs = net(imgs)
         loss = loss_function(outputs, targets)
 
@@ -73,6 +98,10 @@ for i in range(epoch):
     with torch.no_grad(): # 不计算梯度
         for data in test_dataloader:
             imgs, targets = data
+
+            imgs = imgs.cuda()
+            targets = targets.cuda()
+
             outputs = net(imgs)
             loss = loss_function(outputs, targets)
             total_test_loss += loss.item()
@@ -84,7 +113,7 @@ for i in range(epoch):
 
     # 计算准确率并记录
     test_accuracy = total_accuracy / test_data_size
-    test_accuracy_history.append(test_accuracy)
+    test_accuracy_history.append(test_accuracy.cpu().item())
 
     print(f"整体测试集上的loss: {total_test_loss:.4f}, 平均测试集上的Loss: {avg_test_loss:.4f}")
     print(f"平均训练集上的Loss: {avg_train_loss:.4f}")
