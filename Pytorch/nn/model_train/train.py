@@ -35,6 +35,7 @@ epoch = 10 # 训练轮数
 # 添加用于记录loss的列表
 train_loss_history = []
 test_loss_history = []
+test_accuracy_history = []  # 添加准确率记录列表
 
 for i in range(epoch):
     print(f"---------- Epoch {i+1} ----------")
@@ -63,27 +64,50 @@ for i in range(epoch):
 
     # 测试阶段
     total_test_loss = 0.0
+    total_accuracy = 0
     with torch.no_grad(): # 不计算梯度
         for data in test_dataloader:
             imgs, targets = data
             outputs = net(imgs)
             loss = loss_function(outputs, targets)
             total_test_loss += loss.item()
+            accuracy = (outputs.argmax(1) == targets).sum()
+            total_accuracy += accuracy
+    # 计算整体测试集上的loss
     avg_test_loss = total_test_loss / len(test_dataloader)
     test_loss_history.append(avg_test_loss)
-    print(f"整体测试集上的loss: {total_test_loss:.4f}, 平均Loss: {avg_test_loss:.4f}")
-    print(f"训练平均Loss: {avg_train_loss:.4f}")
+
+    # 计算准确率并记录
+    test_accuracy = total_accuracy / test_data_size
+    test_accuracy_history.append(test_accuracy)
+
+    print(f"整体测试集上的loss: {total_test_loss:.4f}, 平均测试集上的Loss: {avg_test_loss:.4f}")
+    print(f"平均训练集上的Loss: {avg_train_loss:.4f}")
+    print(f"整体测试集上的正确率: {test_accuracy:.4f}", total_test_step)
+
+# 绘制loss和准确率曲线
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
 
 # 绘制loss曲线
-plt.figure(figsize=(10, 6))
 epochs_range = range(1, epoch + 1)
-plt.plot(epochs_range, train_loss_history, 'b-', label='训练Loss', linewidth=2)
-plt.plot(epochs_range, test_loss_history, 'r-', label='测试Loss', linewidth=2)
-plt.xlabel('Epoch')
-plt.ylabel('Loss')
-plt.title('训练和测试Loss曲线')
-plt.legend()
-plt.grid(True)
+ax1.plot(epochs_range, train_loss_history, 'b-', label='train_Loss', linewidth=2)
+ax1.plot(epochs_range, test_loss_history, 'r-', label='test_Loss', linewidth=2)
+ax1.set_xlabel('Epoch')
+ax1.set_ylabel('Loss')
+ax1.set_title('Loss Curve')
+ax1.legend()
+ax1.grid(True)
+
+# 绘制准确率曲线
+ax2.plot(epochs_range, test_accuracy_history, 'g-', label='test_Accuracy', linewidth=2)
+ax2.set_xlabel('Epoch')
+ax2.set_ylabel('Accuracy')
+ax2.set_title('Test Accuracy Curve')
+ax2.legend()
+ax2.grid(True)
+
+plt.tight_layout()
 plt.show()
 
 print(f"训练完成！最终训练Loss: {train_loss_history[-1]:.4f}, 最终测试Loss: {test_loss_history[-1]:.4f}")
+print(f"最终测试准确率: {test_accuracy_history[-1]:.4f}")
