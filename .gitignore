@@ -4,3 +4,7 @@ Pytorch/dataloader/
 Pytorch/nn/data
 Pytorch/nn/logs
 
+/Pytorch/nn/vgg16_method2.pth
+/Pytorch/nn/vgg16_method1.pth
+
+/Pytorch/nn/model_train/model.pth
