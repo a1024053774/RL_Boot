@@ -14,13 +14,11 @@ model = PPO("MlpPolicy", env, verbose=1)
 
 # 3. 训练模型
 # 让模型在环境中进行10000个时间步（timesteps）的“学习”。
-print("\n开始训练模型...请观察终端输出的日志。\n")
 model.learn(total_timesteps=10000)
 print("\n训练完成！\n")
 
 # 4. 评估和展示训练好的模型
-print("现在，让我们看看训练好的智能体表现如何！")
-obs, info = env.reset()
+obs, info = env.reset()  # 重置环境，获取初始观测（obs）和其他信息（info）
 for i in range(1000):
     # a. 模型根据当前观测（obs）来预测下一步的动作（action）
     action, _states = model.predict(obs, deterministic=True)

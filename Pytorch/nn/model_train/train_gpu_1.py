@@ -143,5 +143,6 @@ ax2.grid(True)
 plt.tight_layout()
 plt.show()
 
+torch.save(net, "model.pth")
 print(f"训练完成！最终训练Loss: {train_loss_history[-1]:.4f}, 最终测试Loss: {test_loss_history[-1]:.4f}")
 print(f"最终测试准确率: {test_accuracy_history[-1]:.4f}")
