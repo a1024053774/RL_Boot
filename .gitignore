@@ -8,3 +8,6 @@ Pytorch/nn/logs
 /Pytorch/nn/vgg16_method1.pth
 
 /Pytorch/nn/model_train/model.pth
+/imgs
+/runs
+/runs_cartpole
