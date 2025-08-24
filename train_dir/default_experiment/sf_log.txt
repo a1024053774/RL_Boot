@@ -1,0 +1,971 @@
+[2025-08-24 18:32:40,982][22314] Saving configuration to /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/config.json...
+[2025-08-24 18:32:41,149][22314] Rollout worker 0 uses device cpu
+[2025-08-24 18:32:41,150][22314] Rollout worker 1 uses device cpu
+[2025-08-24 18:32:41,152][22314] Rollout worker 2 uses device cpu
+[2025-08-24 18:32:41,152][22314] Rollout worker 3 uses device cpu
+[2025-08-24 18:32:41,153][22314] Rollout worker 4 uses device cpu
+[2025-08-24 18:32:41,154][22314] Rollout worker 5 uses device cpu
+[2025-08-24 18:32:41,155][22314] Rollout worker 6 uses device cpu
+[2025-08-24 18:32:41,155][22314] Rollout worker 7 uses device cpu
+[2025-08-24 18:32:41,207][22314] Using GPUs [0] for process 0 (actually maps to GPUs [0])
+[2025-08-24 18:32:41,208][22314] InferenceWorker_p0-w0: min num requests: 2
+[2025-08-24 18:32:41,235][22314] Starting all processes...
+[2025-08-24 18:32:41,236][22314] Starting process learner_proc0
+[2025-08-24 18:32:41,280][22314] Starting all processes...
+[2025-08-24 18:32:41,288][22314] Starting process inference_proc0-0
+[2025-08-24 18:32:41,288][22314] Starting process rollout_proc0
+[2025-08-24 18:32:41,289][22314] Starting process rollout_proc1
+[2025-08-24 18:32:41,290][22314] Starting process rollout_proc2
+[2025-08-24 18:32:41,290][22314] Starting process rollout_proc3
+[2025-08-24 18:32:41,290][22314] Starting process rollout_proc4
+[2025-08-24 18:32:41,291][22314] Starting process rollout_proc5
+[2025-08-24 18:32:41,291][22314] Starting process rollout_proc6
+[2025-08-24 18:32:41,291][22314] Starting process rollout_proc7
+[2025-08-24 18:32:44,927][22801] Using GPUs [0] for process 0 (actually maps to GPUs [0])
+[2025-08-24 18:32:44,928][22801] Set environment var CUDA_VISIBLE_DEVICES to '0' (GPU indices [0]) for learning process 0
+[2025-08-24 18:32:44,995][22814] Using GPUs [0] for process 0 (actually maps to GPUs [0])
+[2025-08-24 18:32:44,996][22814] Set environment var CUDA_VISIBLE_DEVICES to '0' (GPU indices [0]) for inference process 0
+[2025-08-24 18:32:45,043][22801] Num visible devices: 1
+[2025-08-24 18:32:45,043][22814] Num visible devices: 1
+[2025-08-24 18:32:45,046][22801] Starting seed is not provided
+[2025-08-24 18:32:45,047][22801] Using GPUs [0] for process 0 (actually maps to GPUs [0])
+[2025-08-24 18:32:45,047][22801] Initializing actor-critic model on device cuda:0
+[2025-08-24 18:32:45,047][22815] Worker 0 uses CPU cores [0, 1]
+[2025-08-24 18:32:45,048][22801] RunningMeanStd input shape: (3, 72, 128)
+[2025-08-24 18:32:45,050][22801] RunningMeanStd input shape: (1,)
+[2025-08-24 18:32:45,060][22818] Worker 3 uses CPU cores [6, 7]
+[2025-08-24 18:32:45,064][22801] ConvEncoder: input_channels=3
+[2025-08-24 18:32:45,133][22835] Worker 5 uses CPU cores [10, 11]
+[2025-08-24 18:32:45,133][22837] Worker 6 uses CPU cores [12, 13]
+[2025-08-24 18:32:45,164][22816] Worker 1 uses CPU cores [2, 3]
+[2025-08-24 18:32:45,219][22838] Worker 7 uses CPU cores [14, 15]
+[2025-08-24 18:32:45,246][22834] Worker 4 uses CPU cores [8, 9]
+[2025-08-24 18:32:45,247][22817] Worker 2 uses CPU cores [4, 5]
+[2025-08-24 18:32:45,262][22801] Conv encoder output size: 512
+[2025-08-24 18:32:45,262][22801] Policy head output size: 512
+[2025-08-24 18:32:45,287][22801] Created Actor Critic model with architecture:
+[2025-08-24 18:32:45,287][22801] ActorCriticSharedWeights(
+  (obs_normalizer): ObservationNormalizer(
+    (running_mean_std): RunningMeanStdDictInPlace(
+      (running_mean_std): ModuleDict(
+        (obs): RunningMeanStdInPlace()
+      )
+    )
+  )
+  (returns_normalizer): RecursiveScriptModule(original_name=RunningMeanStdInPlace)
+  (encoder): VizdoomEncoder(
+    (basic_encoder): ConvEncoder(
+      (enc): RecursiveScriptModule(
+        original_name=ConvEncoderImpl
+        (conv_head): RecursiveScriptModule(
+          original_name=Sequential
+          (0): RecursiveScriptModule(original_name=Conv2d)
+          (1): RecursiveScriptModule(original_name=ELU)
+          (2): RecursiveScriptModule(original_name=Conv2d)
+          (3): RecursiveScriptModule(original_name=ELU)
+          (4): RecursiveScriptModule(original_name=Conv2d)
+          (5): RecursiveScriptModule(original_name=ELU)
+        )
+        (mlp_layers): RecursiveScriptModule(
+          original_name=Sequential
+          (0): RecursiveScriptModule(original_name=Linear)
+          (1): RecursiveScriptModule(original_name=ELU)
+        )
+      )
+    )
+  )
+  (core): ModelCoreRNN(
+    (core): GRU(512, 512)
+  )
+  (decoder): MlpDecoder(
+    (mlp): Identity()
+  )
+  (critic_linear): Linear(in_features=512, out_features=1, bias=True)
+  (action_parameterization): ActionParameterizationDefault(
+    (distribution_linear): Linear(in_features=512, out_features=5, bias=True)
+  )
+)
+[2025-08-24 18:32:46,126][22801] Using optimizer <class 'torch.optim.adam.Adam'>
+[2025-08-24 18:32:47,722][22801] No checkpoints found
+[2025-08-24 18:32:47,722][22801] Did not load from checkpoint, starting from scratch!
+[2025-08-24 18:32:47,723][22801] Initialized policy 0 weights for model version 0
+[2025-08-24 18:32:47,731][22801] LearnerWorker_p0 finished initialization!
+[2025-08-24 18:32:47,731][22801] Using GPUs [0] for process 0 (actually maps to GPUs [0])
+[2025-08-24 18:32:47,951][22814] RunningMeanStd input shape: (3, 72, 128)
+[2025-08-24 18:32:47,952][22814] RunningMeanStd input shape: (1,)
+[2025-08-24 18:32:47,963][22814] ConvEncoder: input_channels=3
+[2025-08-24 18:32:48,057][22814] Conv encoder output size: 512
+[2025-08-24 18:32:48,058][22814] Policy head output size: 512
+[2025-08-24 18:32:48,112][22314] Inference worker 0-0 is ready!
+[2025-08-24 18:32:48,114][22314] All inference workers are ready! Signal rollout workers to start!
+[2025-08-24 18:32:48,171][22815] Doom resolution: 160x120, resize resolution: (128, 72)
+[2025-08-24 18:32:48,174][22818] Doom resolution: 160x120, resize resolution: (128, 72)
+[2025-08-24 18:32:48,174][22838] Doom resolution: 160x120, resize resolution: (128, 72)
+[2025-08-24 18:32:48,174][22817] Doom resolution: 160x120, resize resolution: (128, 72)
+[2025-08-24 18:32:48,175][22837] Doom resolution: 160x120, resize resolution: (128, 72)
+[2025-08-24 18:32:48,176][22816] Doom resolution: 160x120, resize resolution: (128, 72)
+[2025-08-24 18:32:48,176][22835] Doom resolution: 160x120, resize resolution: (128, 72)
+[2025-08-24 18:32:48,177][22834] Doom resolution: 160x120, resize resolution: (128, 72)
+[2025-08-24 18:32:48,623][22816] Decorrelating experience for 0 frames...
+[2025-08-24 18:32:48,623][22817] Decorrelating experience for 0 frames...
+[2025-08-24 18:32:48,623][22818] Decorrelating experience for 0 frames...
+[2025-08-24 18:32:48,623][22815] Decorrelating experience for 0 frames...
+[2025-08-24 18:32:48,627][22835] Decorrelating experience for 0 frames...
+[2025-08-24 18:32:48,630][22837] Decorrelating experience for 0 frames...
+[2025-08-24 18:32:48,811][22816] Decorrelating experience for 32 frames...
+[2025-08-24 18:32:48,828][22818] Decorrelating experience for 32 frames...
+[2025-08-24 18:32:48,846][22838] Decorrelating experience for 0 frames...
+[2025-08-24 18:32:49,067][22834] Decorrelating experience for 0 frames...
+[2025-08-24 18:32:49,076][22835] Decorrelating experience for 32 frames...
+[2025-08-24 18:32:49,087][22838] Decorrelating experience for 32 frames...
+[2025-08-24 18:32:49,145][22816] Decorrelating experience for 64 frames...
+[2025-08-24 18:32:49,317][22834] Decorrelating experience for 32 frames...
+[2025-08-24 18:32:49,329][22817] Decorrelating experience for 32 frames...
+[2025-08-24 18:32:49,423][22818] Decorrelating experience for 64 frames...
+[2025-08-24 18:32:49,469][22816] Decorrelating experience for 96 frames...
+[2025-08-24 18:32:49,571][22815] Decorrelating experience for 32 frames...
+[2025-08-24 18:32:49,598][22835] Decorrelating experience for 64 frames...
+[2025-08-24 18:32:49,662][22834] Decorrelating experience for 64 frames...
+[2025-08-24 18:32:49,743][22818] Decorrelating experience for 96 frames...
+[2025-08-24 18:32:49,830][22837] Decorrelating experience for 32 frames...
+[2025-08-24 18:32:49,930][22835] Decorrelating experience for 96 frames...
+[2025-08-24 18:32:49,933][22815] Decorrelating experience for 64 frames...
+[2025-08-24 18:32:50,097][22834] Decorrelating experience for 96 frames...
+[2025-08-24 18:32:50,208][22837] Decorrelating experience for 64 frames...
+[2025-08-24 18:32:50,251][22815] Decorrelating experience for 96 frames...
+[2025-08-24 18:32:50,292][22314] Fps is (10 sec: nan, 60 sec: nan, 300 sec: nan). Total num frames: 0. Throughput: 0: nan. Samples: 0. Policy #0 lag: (min: -1.0, avg: -1.0, max: -1.0)
+[2025-08-24 18:32:50,331][22817] Decorrelating experience for 64 frames...
+[2025-08-24 18:32:50,572][22838] Decorrelating experience for 64 frames...
+[2025-08-24 18:32:50,592][22817] Decorrelating experience for 96 frames...
+[2025-08-24 18:32:50,815][22837] Decorrelating experience for 96 frames...
+[2025-08-24 18:32:50,882][22838] Decorrelating experience for 96 frames...
+[2025-08-24 18:32:51,860][22801] Signal inference workers to stop experience collection...
+[2025-08-24 18:32:51,868][22814] InferenceWorker_p0-w0: stopping experience collection
+[2025-08-24 18:32:53,563][22801] Signal inference workers to resume experience collection...
+[2025-08-24 18:32:53,564][22814] InferenceWorker_p0-w0: resuming experience collection
+[2025-08-24 18:32:55,292][22314] Fps is (10 sec: 4915.1, 60 sec: 4915.1, 300 sec: 4915.1). Total num frames: 24576. Throughput: 0: 798.4. Samples: 3992. Policy #0 lag: (min: 0.0, avg: 0.0, max: 0.0)
+[2025-08-24 18:32:55,294][22314] Avg episode reward: [(0, '3.567')]
+[2025-08-24 18:32:56,784][22814] Updated weights for policy 0, policy_version 10 (0.0017)
+[2025-08-24 18:33:00,292][22314] Fps is (10 sec: 7782.4, 60 sec: 7782.4, 300 sec: 7782.4). Total num frames: 77824. Throughput: 0: 2010.2. Samples: 20102. Policy #0 lag: (min: 0.0, avg: 0.7, max: 1.0)
+[2025-08-24 18:33:00,293][22314] Avg episode reward: [(0, '4.637')]
+[2025-08-24 18:33:00,503][22814] Updated weights for policy 0, policy_version 20 (0.0018)
+[2025-08-24 18:33:01,201][22314] Heartbeat connected on Batcher_0
+[2025-08-24 18:33:01,204][22314] Heartbeat connected on LearnerWorker_p0
+[2025-08-24 18:33:01,213][22314] Heartbeat connected on RolloutWorker_w0
+[2025-08-24 18:33:01,215][22314] Heartbeat connected on InferenceWorker_p0-w0
+[2025-08-24 18:33:01,219][22314] Heartbeat connected on RolloutWorker_w2
+[2025-08-24 18:33:01,221][22314] Heartbeat connected on RolloutWorker_w1
+[2025-08-24 18:33:01,225][22314] Heartbeat connected on RolloutWorker_w3
+[2025-08-24 18:33:01,226][22314] Heartbeat connected on RolloutWorker_w4
+[2025-08-24 18:33:01,232][22314] Heartbeat connected on RolloutWorker_w6
+[2025-08-24 18:33:01,234][22314] Heartbeat connected on RolloutWorker_w5
+[2025-08-24 18:33:01,239][22314] Heartbeat connected on RolloutWorker_w7
+[2025-08-24 18:33:05,123][22814] Updated weights for policy 0, policy_version 30 (0.0025)
+[2025-08-24 18:33:05,292][22314] Fps is (10 sec: 9830.6, 60 sec: 8192.0, 300 sec: 8192.0). Total num frames: 122880. Throughput: 0: 1823.3. Samples: 27350. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:33:05,294][22314] Avg episode reward: [(0, '4.497')]
+[2025-08-24 18:33:05,302][22801] Saving new best policy, reward=4.497!
+[2025-08-24 18:33:10,291][22814] Updated weights for policy 0, policy_version 40 (0.0034)
+[2025-08-24 18:33:10,292][22314] Fps is (10 sec: 8601.6, 60 sec: 8192.0, 300 sec: 8192.0). Total num frames: 163840. Throughput: 0: 1976.4. Samples: 39528. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:33:10,294][22314] Avg episode reward: [(0, '4.477')]
+[2025-08-24 18:33:15,292][22314] Fps is (10 sec: 7372.7, 60 sec: 7864.3, 300 sec: 7864.3). Total num frames: 196608. Throughput: 0: 1985.0. Samples: 49626. Policy #0 lag: (min: 0.0, avg: 0.7, max: 1.0)
+[2025-08-24 18:33:15,294][22314] Avg episode reward: [(0, '4.510')]
+[2025-08-24 18:33:15,304][22801] Saving new best policy, reward=4.510!
+[2025-08-24 18:33:16,440][22814] Updated weights for policy 0, policy_version 50 (0.0041)
+[2025-08-24 18:33:20,292][22314] Fps is (10 sec: 6553.6, 60 sec: 7645.9, 300 sec: 7645.9). Total num frames: 229376. Throughput: 0: 1825.2. Samples: 54756. Policy #0 lag: (min: 0.0, avg: 0.7, max: 1.0)
+[2025-08-24 18:33:20,294][22314] Avg episode reward: [(0, '4.691')]
+[2025-08-24 18:33:20,297][22801] Saving new best policy, reward=4.691!
+[2025-08-24 18:33:22,191][22814] Updated weights for policy 0, policy_version 60 (0.0026)
+[2025-08-24 18:33:25,292][22314] Fps is (10 sec: 6963.2, 60 sec: 7606.8, 300 sec: 7606.8). Total num frames: 266240. Throughput: 0: 1864.3. Samples: 65252. Policy #0 lag: (min: 0.0, avg: 0.6, max: 1.0)
+[2025-08-24 18:33:25,294][22314] Avg episode reward: [(0, '4.740')]
+[2025-08-24 18:33:25,302][22801] Saving new best policy, reward=4.740!
+[2025-08-24 18:33:28,019][22814] Updated weights for policy 0, policy_version 70 (0.0023)
+[2025-08-24 18:33:30,292][22314] Fps is (10 sec: 7372.8, 60 sec: 7577.6, 300 sec: 7577.6). Total num frames: 303104. Throughput: 0: 1920.9. Samples: 76836. Policy #0 lag: (min: 0.0, avg: 0.7, max: 1.0)
+[2025-08-24 18:33:30,294][22314] Avg episode reward: [(0, '4.530')]
+[2025-08-24 18:33:33,059][22814] Updated weights for policy 0, policy_version 80 (0.0027)
+[2025-08-24 18:33:35,292][22314] Fps is (10 sec: 7782.4, 60 sec: 7645.9, 300 sec: 7645.9). Total num frames: 344064. Throughput: 0: 1839.0. Samples: 82754. Policy #0 lag: (min: 0.0, avg: 0.6, max: 2.0)
+[2025-08-24 18:33:35,294][22314] Avg episode reward: [(0, '4.332')]
+[2025-08-24 18:33:38,049][22814] Updated weights for policy 0, policy_version 90 (0.0025)
+[2025-08-24 18:33:40,292][22314] Fps is (10 sec: 8191.9, 60 sec: 7700.5, 300 sec: 7700.5). Total num frames: 385024. Throughput: 0: 2029.2. Samples: 95308. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:33:40,294][22314] Avg episode reward: [(0, '4.402')]
+[2025-08-24 18:33:42,709][22814] Updated weights for policy 0, policy_version 100 (0.0028)
+[2025-08-24 18:33:45,293][22314] Fps is (10 sec: 8600.4, 60 sec: 7819.4, 300 sec: 7819.4). Total num frames: 430080. Throughput: 0: 1964.7. Samples: 108518. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:33:45,296][22314] Avg episode reward: [(0, '4.524')]
+[2025-08-24 18:33:47,055][22814] Updated weights for policy 0, policy_version 110 (0.0024)
+[2025-08-24 18:33:50,292][22314] Fps is (10 sec: 9420.8, 60 sec: 7987.2, 300 sec: 7987.2). Total num frames: 479232. Throughput: 0: 1969.6. Samples: 115982. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:33:50,294][22314] Avg episode reward: [(0, '4.392')]
+[2025-08-24 18:33:51,247][22814] Updated weights for policy 0, policy_version 120 (0.0022)
+[2025-08-24 18:33:55,292][22314] Fps is (10 sec: 9422.2, 60 sec: 8328.6, 300 sec: 8066.0). Total num frames: 524288. Throughput: 0: 2008.2. Samples: 129898. Policy #0 lag: (min: 0.0, avg: 0.6, max: 2.0)
+[2025-08-24 18:33:55,293][22314] Avg episode reward: [(0, '4.456')]
+[2025-08-24 18:33:55,866][22814] Updated weights for policy 0, policy_version 130 (0.0027)
+[2025-08-24 18:34:00,223][22814] Updated weights for policy 0, policy_version 140 (0.0027)
+[2025-08-24 18:34:00,292][22314] Fps is (10 sec: 9420.9, 60 sec: 8260.3, 300 sec: 8192.0). Total num frames: 573440. Throughput: 0: 2094.8. Samples: 143890. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:34:00,293][22314] Avg episode reward: [(0, '4.418')]
+[2025-08-24 18:34:05,075][22814] Updated weights for policy 0, policy_version 150 (0.0024)
+[2025-08-24 18:34:05,292][22314] Fps is (10 sec: 9011.1, 60 sec: 8192.0, 300 sec: 8192.0). Total num frames: 614400. Throughput: 0: 2123.7. Samples: 150322. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:34:05,294][22314] Avg episode reward: [(0, '4.321')]
+[2025-08-24 18:34:10,292][22314] Fps is (10 sec: 7782.5, 60 sec: 8123.7, 300 sec: 8140.8). Total num frames: 651264. Throughput: 0: 2136.0. Samples: 161372. Policy #0 lag: (min: 0.0, avg: 0.6, max: 2.0)
+[2025-08-24 18:34:10,293][22314] Avg episode reward: [(0, '4.659')]
+[2025-08-24 18:34:10,596][22814] Updated weights for policy 0, policy_version 160 (0.0024)
+[2025-08-24 18:34:15,292][22314] Fps is (10 sec: 7782.2, 60 sec: 8260.2, 300 sec: 8143.8). Total num frames: 692224. Throughput: 0: 2160.3. Samples: 174050. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:34:15,294][22314] Avg episode reward: [(0, '4.358')]
+[2025-08-24 18:34:15,436][22814] Updated weights for policy 0, policy_version 170 (0.0029)
+[2025-08-24 18:34:19,888][22814] Updated weights for policy 0, policy_version 180 (0.0023)
+[2025-08-24 18:34:20,292][22314] Fps is (10 sec: 8601.5, 60 sec: 8465.1, 300 sec: 8192.0). Total num frames: 737280. Throughput: 0: 2180.6. Samples: 180882. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:34:20,294][22314] Avg episode reward: [(0, '4.411')]
+[2025-08-24 18:34:25,292][22314] Fps is (10 sec: 8192.1, 60 sec: 8465.1, 300 sec: 8148.9). Total num frames: 774144. Throughput: 0: 2158.4. Samples: 192438. Policy #0 lag: (min: 0.0, avg: 0.6, max: 2.0)
+[2025-08-24 18:34:25,294][22314] Avg episode reward: [(0, '4.714')]
+[2025-08-24 18:34:25,827][22814] Updated weights for policy 0, policy_version 190 (0.0034)
+[2025-08-24 18:34:30,292][22314] Fps is (10 sec: 6963.3, 60 sec: 8396.8, 300 sec: 8069.1). Total num frames: 806912. Throughput: 0: 2078.0. Samples: 202026. Policy #0 lag: (min: 0.0, avg: 0.6, max: 2.0)
+[2025-08-24 18:34:30,294][22314] Avg episode reward: [(0, '4.570')]
+[2025-08-24 18:34:31,916][22814] Updated weights for policy 0, policy_version 200 (0.0036)
+[2025-08-24 18:34:35,292][22314] Fps is (10 sec: 6963.3, 60 sec: 8328.5, 300 sec: 8036.0). Total num frames: 843776. Throughput: 0: 2044.7. Samples: 207994. Policy #0 lag: (min: 0.0, avg: 0.5, max: 2.0)
+[2025-08-24 18:34:35,294][22314] Avg episode reward: [(0, '4.396')]
+[2025-08-24 18:34:35,363][22801] Saving /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000207_847872.pth...
+[2025-08-24 18:34:36,698][22814] Updated weights for policy 0, policy_version 210 (0.0033)
+[2025-08-24 18:34:40,292][22314] Fps is (10 sec: 8192.0, 60 sec: 8396.8, 300 sec: 8080.3). Total num frames: 888832. Throughput: 0: 2020.2. Samples: 220806. Policy #0 lag: (min: 0.0, avg: 0.6, max: 2.0)
+[2025-08-24 18:34:40,294][22314] Avg episode reward: [(0, '4.382')]
+[2025-08-24 18:34:41,191][22814] Updated weights for policy 0, policy_version 220 (0.0023)
+[2025-08-24 18:34:45,277][22814] Updated weights for policy 0, policy_version 230 (0.0020)
+[2025-08-24 18:34:45,292][22314] Fps is (10 sec: 9830.3, 60 sec: 8533.5, 300 sec: 8192.0). Total num frames: 942080. Throughput: 0: 2044.0. Samples: 235872. Policy #0 lag: (min: 0.0, avg: 0.6, max: 2.0)
+[2025-08-24 18:34:45,294][22314] Avg episode reward: [(0, '4.283')]
+[2025-08-24 18:34:50,137][22814] Updated weights for policy 0, policy_version 240 (0.0031)
+[2025-08-24 18:34:50,292][22314] Fps is (10 sec: 9420.9, 60 sec: 8396.8, 300 sec: 8192.0). Total num frames: 983040. Throughput: 0: 2045.3. Samples: 242362. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:34:50,293][22314] Avg episode reward: [(0, '4.406')]
+[2025-08-24 18:34:54,607][22814] Updated weights for policy 0, policy_version 250 (0.0019)
+[2025-08-24 18:34:55,292][22314] Fps is (10 sec: 8601.7, 60 sec: 8396.8, 300 sec: 8224.8). Total num frames: 1028096. Throughput: 0: 2094.0. Samples: 255602. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:34:55,294][22314] Avg episode reward: [(0, '4.361')]
+[2025-08-24 18:34:58,725][22814] Updated weights for policy 0, policy_version 260 (0.0023)
+[2025-08-24 18:35:00,292][22314] Fps is (10 sec: 9420.7, 60 sec: 8396.8, 300 sec: 8286.5). Total num frames: 1077248. Throughput: 0: 2142.6. Samples: 270468. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:35:00,294][22314] Avg episode reward: [(0, '4.408')]
+[2025-08-24 18:35:02,709][22814] Updated weights for policy 0, policy_version 270 (0.0023)
+[2025-08-24 18:35:05,291][22314] Fps is (10 sec: 10240.2, 60 sec: 8601.6, 300 sec: 8374.1). Total num frames: 1130496. Throughput: 0: 2166.1. Samples: 278354. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:35:05,293][22314] Avg episode reward: [(0, '4.478')]
+[2025-08-24 18:35:06,461][22814] Updated weights for policy 0, policy_version 280 (0.0020)
+[2025-08-24 18:35:10,292][22314] Fps is (10 sec: 10649.6, 60 sec: 8874.7, 300 sec: 8455.3). Total num frames: 1183744. Throughput: 0: 2266.7. Samples: 294438. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:35:10,293][22314] Avg episode reward: [(0, '4.752')]
+[2025-08-24 18:35:10,312][22801] Saving new best policy, reward=4.752!
+[2025-08-24 18:35:10,312][22814] Updated weights for policy 0, policy_version 290 (0.0020)
+[2025-08-24 18:35:14,120][22814] Updated weights for policy 0, policy_version 300 (0.0020)
+[2025-08-24 18:35:15,292][22314] Fps is (10 sec: 11059.0, 60 sec: 9147.8, 300 sec: 8559.2). Total num frames: 1241088. Throughput: 0: 2417.7. Samples: 310824. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:35:15,294][22314] Avg episode reward: [(0, '4.581')]
+[2025-08-24 18:35:17,918][22814] Updated weights for policy 0, policy_version 310 (0.0022)
+[2025-08-24 18:35:20,292][22314] Fps is (10 sec: 10649.5, 60 sec: 9216.0, 300 sec: 8601.6). Total num frames: 1290240. Throughput: 0: 2461.8. Samples: 318776. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:35:20,293][22314] Avg episode reward: [(0, '4.453')]
+[2025-08-24 18:35:21,833][22814] Updated weights for policy 0, policy_version 320 (0.0024)
+[2025-08-24 18:35:25,292][22314] Fps is (10 sec: 10240.0, 60 sec: 9489.1, 300 sec: 8667.7). Total num frames: 1343488. Throughput: 0: 2525.0. Samples: 334432. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:35:25,294][22314] Avg episode reward: [(0, '4.421')]
+[2025-08-24 18:35:25,665][22814] Updated weights for policy 0, policy_version 330 (0.0019)
+[2025-08-24 18:35:29,579][22814] Updated weights for policy 0, policy_version 340 (0.0021)
+[2025-08-24 18:35:30,292][22314] Fps is (10 sec: 10649.7, 60 sec: 9830.4, 300 sec: 8729.6). Total num frames: 1396736. Throughput: 0: 2539.9. Samples: 350168. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:35:30,293][22314] Avg episode reward: [(0, '4.484')]
+[2025-08-24 18:35:33,729][22814] Updated weights for policy 0, policy_version 350 (0.0026)
+[2025-08-24 18:35:35,292][22314] Fps is (10 sec: 10240.1, 60 sec: 10035.2, 300 sec: 8763.0). Total num frames: 1445888. Throughput: 0: 2569.0. Samples: 357968. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:35:35,293][22314] Avg episode reward: [(0, '4.212')]
+[2025-08-24 18:35:37,704][22814] Updated weights for policy 0, policy_version 360 (0.0021)
+[2025-08-24 18:35:40,291][22314] Fps is (10 sec: 9830.5, 60 sec: 10103.5, 300 sec: 8794.4). Total num frames: 1495040. Throughput: 0: 2600.4. Samples: 372620. Policy #0 lag: (min: 0.0, avg: 0.6, max: 2.0)
+[2025-08-24 18:35:40,293][22314] Avg episode reward: [(0, '4.548')]
+[2025-08-24 18:35:41,922][22814] Updated weights for policy 0, policy_version 370 (0.0027)
+[2025-08-24 18:35:45,292][22314] Fps is (10 sec: 10239.9, 60 sec: 10103.5, 300 sec: 8847.4). Total num frames: 1548288. Throughput: 0: 2603.7. Samples: 387636. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:35:45,294][22314] Avg episode reward: [(0, '4.488')]
+[2025-08-24 18:35:45,969][22814] Updated weights for policy 0, policy_version 380 (0.0021)
+[2025-08-24 18:35:49,918][22814] Updated weights for policy 0, policy_version 390 (0.0020)
+[2025-08-24 18:35:50,292][22314] Fps is (10 sec: 10239.8, 60 sec: 10240.0, 300 sec: 8874.7). Total num frames: 1597440. Throughput: 0: 2610.1. Samples: 395808. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:35:50,294][22314] Avg episode reward: [(0, '4.378')]
+[2025-08-24 18:35:53,877][22814] Updated weights for policy 0, policy_version 400 (0.0024)
+[2025-08-24 18:35:55,292][22314] Fps is (10 sec: 10239.8, 60 sec: 10376.5, 300 sec: 8922.6). Total num frames: 1650688. Throughput: 0: 2587.0. Samples: 410852. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:35:55,294][22314] Avg episode reward: [(0, '4.416')]
+[2025-08-24 18:35:57,891][22814] Updated weights for policy 0, policy_version 410 (0.0023)
+[2025-08-24 18:36:00,292][22314] Fps is (10 sec: 10240.1, 60 sec: 10376.5, 300 sec: 8946.5). Total num frames: 1699840. Throughput: 0: 2563.5. Samples: 426182. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:36:00,293][22314] Avg episode reward: [(0, '4.575')]
+[2025-08-24 18:36:01,835][22814] Updated weights for policy 0, policy_version 420 (0.0019)
+[2025-08-24 18:36:05,292][22314] Fps is (10 sec: 9830.5, 60 sec: 10308.2, 300 sec: 8969.2). Total num frames: 1748992. Throughput: 0: 2555.2. Samples: 433760. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:36:05,293][22314] Avg episode reward: [(0, '4.477')]
+[2025-08-24 18:36:06,581][22814] Updated weights for policy 0, policy_version 430 (0.0030)
+[2025-08-24 18:36:10,292][22314] Fps is (10 sec: 9011.1, 60 sec: 10103.5, 300 sec: 8949.8). Total num frames: 1789952. Throughput: 0: 2493.1. Samples: 446620. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:36:10,294][22314] Avg episode reward: [(0, '4.409')]
+[2025-08-24 18:36:11,351][22814] Updated weights for policy 0, policy_version 440 (0.0026)
+[2025-08-24 18:36:15,292][22314] Fps is (10 sec: 8601.6, 60 sec: 9898.7, 300 sec: 8951.3). Total num frames: 1835008. Throughput: 0: 2430.4. Samples: 459536. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:36:15,294][22314] Avg episode reward: [(0, '4.300')]
+[2025-08-24 18:36:16,021][22814] Updated weights for policy 0, policy_version 450 (0.0031)
+[2025-08-24 18:36:20,292][22314] Fps is (10 sec: 8601.6, 60 sec: 9762.1, 300 sec: 8933.2). Total num frames: 1875968. Throughput: 0: 2394.0. Samples: 465700. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:36:20,294][22314] Avg episode reward: [(0, '4.548')]
+[2025-08-24 18:36:21,182][22814] Updated weights for policy 0, policy_version 460 (0.0022)
+[2025-08-24 18:36:25,292][22314] Fps is (10 sec: 8192.1, 60 sec: 9557.3, 300 sec: 8915.9). Total num frames: 1916928. Throughput: 0: 2340.7. Samples: 477950. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:36:25,293][22314] Avg episode reward: [(0, '4.455')]
+[2025-08-24 18:36:25,806][22814] Updated weights for policy 0, policy_version 470 (0.0024)
+[2025-08-24 18:36:29,984][22814] Updated weights for policy 0, policy_version 480 (0.0024)
+[2025-08-24 18:36:30,291][22314] Fps is (10 sec: 9011.4, 60 sec: 9489.1, 300 sec: 8936.7). Total num frames: 1966080. Throughput: 0: 2332.8. Samples: 492610. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:36:30,293][22314] Avg episode reward: [(0, '4.589')]
+[2025-08-24 18:36:33,901][22814] Updated weights for policy 0, policy_version 490 (0.0024)
+[2025-08-24 18:36:35,292][22314] Fps is (10 sec: 10240.0, 60 sec: 9557.3, 300 sec: 8974.8). Total num frames: 2019328. Throughput: 0: 2327.8. Samples: 500558. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:36:35,293][22314] Avg episode reward: [(0, '4.355')]
+[2025-08-24 18:36:35,303][22801] Saving /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000493_2019328.pth...
+[2025-08-24 18:36:37,913][22814] Updated weights for policy 0, policy_version 500 (0.0023)
+[2025-08-24 18:36:40,292][22314] Fps is (10 sec: 10239.8, 60 sec: 9557.3, 300 sec: 8993.4). Total num frames: 2068480. Throughput: 0: 2331.9. Samples: 515788. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:36:40,293][22314] Avg episode reward: [(0, '4.271')]
+[2025-08-24 18:36:41,942][22814] Updated weights for policy 0, policy_version 510 (0.0023)
+[2025-08-24 18:36:45,292][22314] Fps is (10 sec: 10239.9, 60 sec: 9557.3, 300 sec: 9028.6). Total num frames: 2121728. Throughput: 0: 2338.5. Samples: 531416. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:36:45,295][22314] Avg episode reward: [(0, '4.457')]
+[2025-08-24 18:36:45,764][22814] Updated weights for policy 0, policy_version 520 (0.0018)
+[2025-08-24 18:36:50,081][22814] Updated weights for policy 0, policy_version 530 (0.0022)
+[2025-08-24 18:36:50,292][22314] Fps is (10 sec: 10240.0, 60 sec: 9557.3, 300 sec: 9045.3). Total num frames: 2170880. Throughput: 0: 2339.1. Samples: 539018. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:36:50,294][22314] Avg episode reward: [(0, '4.509')]
+[2025-08-24 18:36:53,982][22814] Updated weights for policy 0, policy_version 540 (0.0021)
+[2025-08-24 18:36:55,292][22314] Fps is (10 sec: 10240.1, 60 sec: 9557.4, 300 sec: 9078.1). Total num frames: 2224128. Throughput: 0: 2389.9. Samples: 554164. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:36:55,293][22314] Avg episode reward: [(0, '4.568')]
+[2025-08-24 18:36:57,868][22814] Updated weights for policy 0, policy_version 550 (0.0020)
+[2025-08-24 18:37:00,292][22314] Fps is (10 sec: 10649.7, 60 sec: 9625.6, 300 sec: 9109.5). Total num frames: 2277376. Throughput: 0: 2454.4. Samples: 569982. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:37:00,293][22314] Avg episode reward: [(0, '4.440')]
+[2025-08-24 18:37:02,032][22814] Updated weights for policy 0, policy_version 560 (0.0023)
+[2025-08-24 18:37:05,292][22314] Fps is (10 sec: 9011.0, 60 sec: 9420.8, 300 sec: 9075.4). Total num frames: 2314240. Throughput: 0: 2458.7. Samples: 576340. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:37:05,294][22314] Avg episode reward: [(0, '4.562')]
+[2025-08-24 18:37:07,602][22814] Updated weights for policy 0, policy_version 570 (0.0031)
+[2025-08-24 18:37:10,292][22314] Fps is (10 sec: 7372.7, 60 sec: 9352.5, 300 sec: 9042.7). Total num frames: 2351104. Throughput: 0: 2422.6. Samples: 586968. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:37:10,294][22314] Avg episode reward: [(0, '4.336')]
+[2025-08-24 18:37:12,990][22814] Updated weights for policy 0, policy_version 580 (0.0041)
+[2025-08-24 18:37:15,292][22314] Fps is (10 sec: 7782.6, 60 sec: 9284.3, 300 sec: 9026.7). Total num frames: 2392064. Throughput: 0: 2363.7. Samples: 598976. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:37:15,293][22314] Avg episode reward: [(0, '4.295')]
+[2025-08-24 18:37:18,069][22814] Updated weights for policy 0, policy_version 590 (0.0021)
+[2025-08-24 18:37:20,292][22314] Fps is (10 sec: 8192.0, 60 sec: 9284.3, 300 sec: 9011.2). Total num frames: 2433024. Throughput: 0: 2323.1. Samples: 605098. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:37:20,293][22314] Avg episode reward: [(0, '4.286')]
+[2025-08-24 18:37:22,760][22814] Updated weights for policy 0, policy_version 600 (0.0021)
+[2025-08-24 18:37:25,292][22314] Fps is (10 sec: 8601.5, 60 sec: 9352.5, 300 sec: 9011.2). Total num frames: 2478080. Throughput: 0: 2281.5. Samples: 618456. Policy #0 lag: (min: 0.0, avg: 0.9, max: 2.0)
+[2025-08-24 18:37:25,293][22314] Avg episode reward: [(0, '4.462')]
+[2025-08-24 18:37:26,891][22814] Updated weights for policy 0, policy_version 610 (0.0023)
+[2025-08-24 18:37:30,291][22314] Fps is (10 sec: 9830.5, 60 sec: 9420.8, 300 sec: 9040.5). Total num frames: 2531328. Throughput: 0: 2272.3. Samples: 633668. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:37:30,293][22314] Avg episode reward: [(0, '4.367')]
+[2025-08-24 18:37:30,952][22814] Updated weights for policy 0, policy_version 620 (0.0019)
+[2025-08-24 18:37:35,291][22314] Fps is (10 sec: 9830.6, 60 sec: 9284.3, 300 sec: 9039.9). Total num frames: 2576384. Throughput: 0: 2262.0. Samples: 640806. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:37:35,294][22314] Avg episode reward: [(0, '4.463')]
+[2025-08-24 18:37:35,383][22814] Updated weights for policy 0, policy_version 630 (0.0023)
+[2025-08-24 18:37:39,688][22814] Updated weights for policy 0, policy_version 640 (0.0023)
+[2025-08-24 18:37:40,291][22314] Fps is (10 sec: 9420.8, 60 sec: 9284.3, 300 sec: 9053.6). Total num frames: 2625536. Throughput: 0: 2235.4. Samples: 654758. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:37:40,293][22314] Avg episode reward: [(0, '4.310')]
+[2025-08-24 18:37:43,886][22814] Updated weights for policy 0, policy_version 650 (0.0020)
+[2025-08-24 18:37:45,292][22314] Fps is (10 sec: 9830.3, 60 sec: 9216.0, 300 sec: 9066.7). Total num frames: 2674688. Throughput: 0: 2210.5. Samples: 669456. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:37:45,294][22314] Avg episode reward: [(0, '4.356')]
+[2025-08-24 18:37:48,177][22814] Updated weights for policy 0, policy_version 660 (0.0026)
+[2025-08-24 18:37:50,292][22314] Fps is (10 sec: 9420.6, 60 sec: 9147.7, 300 sec: 9136.2). Total num frames: 2719744. Throughput: 0: 2228.9. Samples: 676640. Policy #0 lag: (min: 0.0, avg: 0.9, max: 2.0)
+[2025-08-24 18:37:50,294][22314] Avg episode reward: [(0, '4.454')]
+[2025-08-24 18:37:53,073][22814] Updated weights for policy 0, policy_version 670 (0.0030)
+[2025-08-24 18:37:55,292][22314] Fps is (10 sec: 8601.6, 60 sec: 8942.9, 300 sec: 9094.5). Total num frames: 2760704. Throughput: 0: 2277.4. Samples: 689452. Policy #0 lag: (min: 0.0, avg: 0.9, max: 2.0)
+[2025-08-24 18:37:55,294][22314] Avg episode reward: [(0, '4.205')]
+[2025-08-24 18:37:57,367][22814] Updated weights for policy 0, policy_version 680 (0.0024)
+[2025-08-24 18:38:00,292][22314] Fps is (10 sec: 9011.3, 60 sec: 8874.7, 300 sec: 9108.4). Total num frames: 2809856. Throughput: 0: 2327.3. Samples: 703706. Policy #0 lag: (min: 0.0, avg: 0.9, max: 2.0)
+[2025-08-24 18:38:00,294][22314] Avg episode reward: [(0, '4.522')]
+[2025-08-24 18:38:01,711][22814] Updated weights for policy 0, policy_version 690 (0.0021)
+[2025-08-24 18:38:05,296][22314] Fps is (10 sec: 9007.3, 60 sec: 8942.3, 300 sec: 9108.3). Total num frames: 2850816. Throughput: 0: 2341.0. Samples: 710454. Policy #0 lag: (min: 0.0, avg: 0.9, max: 2.0)
+[2025-08-24 18:38:05,298][22314] Avg episode reward: [(0, '4.439')]
+[2025-08-24 18:38:06,848][22814] Updated weights for policy 0, policy_version 700 (0.0024)
+[2025-08-24 18:38:10,292][22314] Fps is (10 sec: 8601.6, 60 sec: 9079.5, 300 sec: 9150.1). Total num frames: 2895872. Throughput: 0: 2315.6. Samples: 722660. Policy #0 lag: (min: 0.0, avg: 0.9, max: 2.0)
+[2025-08-24 18:38:10,294][22314] Avg episode reward: [(0, '4.626')]
+[2025-08-24 18:38:11,795][22814] Updated weights for policy 0, policy_version 710 (0.0025)
+[2025-08-24 18:38:15,292][22314] Fps is (10 sec: 8605.4, 60 sec: 9079.5, 300 sec: 9177.8). Total num frames: 2936832. Throughput: 0: 2247.0. Samples: 734782. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:38:15,293][22314] Avg episode reward: [(0, '4.450')]
+[2025-08-24 18:38:16,799][22814] Updated weights for policy 0, policy_version 720 (0.0023)
+[2025-08-24 18:38:20,292][22314] Fps is (10 sec: 8191.9, 60 sec: 9079.4, 300 sec: 9191.7). Total num frames: 2977792. Throughput: 0: 2225.5. Samples: 740954. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:38:20,295][22314] Avg episode reward: [(0, '4.581')]
+[2025-08-24 18:38:21,681][22814] Updated weights for policy 0, policy_version 730 (0.0031)
+[2025-08-24 18:38:25,292][22314] Fps is (10 sec: 8192.1, 60 sec: 9011.2, 300 sec: 9205.6). Total num frames: 3018752. Throughput: 0: 2201.3. Samples: 753816. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:38:25,293][22314] Avg episode reward: [(0, '4.501')]
+[2025-08-24 18:38:26,141][22814] Updated weights for policy 0, policy_version 740 (0.0024)
+[2025-08-24 18:38:30,292][22314] Fps is (10 sec: 9011.2, 60 sec: 8942.9, 300 sec: 9233.4). Total num frames: 3067904. Throughput: 0: 2195.5. Samples: 768252. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:38:30,294][22314] Avg episode reward: [(0, '4.295')]
+[2025-08-24 18:38:30,361][22814] Updated weights for policy 0, policy_version 750 (0.0023)
+[2025-08-24 18:38:35,035][22814] Updated weights for policy 0, policy_version 760 (0.0031)
+[2025-08-24 18:38:35,292][22314] Fps is (10 sec: 9420.7, 60 sec: 8942.9, 300 sec: 9247.2). Total num frames: 3112960. Throughput: 0: 2185.9. Samples: 775004. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:38:35,293][22314] Avg episode reward: [(0, '4.592')]
+[2025-08-24 18:38:35,305][22801] Saving /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000760_3112960.pth...
+[2025-08-24 18:38:35,391][22801] Removing /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000207_847872.pth
+[2025-08-24 18:38:39,621][22814] Updated weights for policy 0, policy_version 770 (0.0028)
+[2025-08-24 18:38:40,292][22314] Fps is (10 sec: 9011.3, 60 sec: 8874.6, 300 sec: 9247.3). Total num frames: 3158016. Throughput: 0: 2194.3. Samples: 788194. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:38:40,294][22314] Avg episode reward: [(0, '4.343')]
+[2025-08-24 18:38:44,197][22814] Updated weights for policy 0, policy_version 780 (0.0027)
+[2025-08-24 18:38:45,292][22314] Fps is (10 sec: 9011.2, 60 sec: 8806.4, 300 sec: 9233.4). Total num frames: 3203072. Throughput: 0: 2174.6. Samples: 801564. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:38:45,294][22314] Avg episode reward: [(0, '4.506')]
+[2025-08-24 18:38:48,474][22814] Updated weights for policy 0, policy_version 790 (0.0024)
+[2025-08-24 18:38:50,292][22314] Fps is (10 sec: 9420.9, 60 sec: 8874.7, 300 sec: 9247.2). Total num frames: 3252224. Throughput: 0: 2189.1. Samples: 808952. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:38:50,295][22314] Avg episode reward: [(0, '4.536')]
+[2025-08-24 18:38:52,708][22814] Updated weights for policy 0, policy_version 800 (0.0018)
+[2025-08-24 18:38:55,293][22314] Fps is (10 sec: 9830.2, 60 sec: 9011.2, 300 sec: 9247.2). Total num frames: 3301376. Throughput: 0: 2237.5. Samples: 823346. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:38:55,295][22314] Avg episode reward: [(0, '4.507')]
+[2025-08-24 18:38:57,013][22814] Updated weights for policy 0, policy_version 810 (0.0022)
+[2025-08-24 18:39:00,291][22314] Fps is (10 sec: 9420.9, 60 sec: 8943.0, 300 sec: 9261.1). Total num frames: 3346432. Throughput: 0: 2286.1. Samples: 837658. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:39:00,294][22314] Avg episode reward: [(0, '4.375')]
+[2025-08-24 18:39:01,239][22814] Updated weights for policy 0, policy_version 820 (0.0019)
+[2025-08-24 18:39:05,292][22314] Fps is (10 sec: 8601.8, 60 sec: 8943.6, 300 sec: 9275.0). Total num frames: 3387392. Throughput: 0: 2306.0. Samples: 844722. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:39:05,293][22314] Avg episode reward: [(0, '4.632')]
+[2025-08-24 18:39:06,311][22814] Updated weights for policy 0, policy_version 830 (0.0031)
+[2025-08-24 18:39:10,293][22314] Fps is (10 sec: 8190.6, 60 sec: 8874.4, 300 sec: 9275.0). Total num frames: 3428352. Throughput: 0: 2283.3. Samples: 856570. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:39:10,299][22314] Avg episode reward: [(0, '4.381')]
+[2025-08-24 18:39:11,452][22814] Updated weights for policy 0, policy_version 840 (0.0024)
+[2025-08-24 18:39:15,292][22314] Fps is (10 sec: 8192.0, 60 sec: 8874.7, 300 sec: 9261.1). Total num frames: 3469312. Throughput: 0: 2230.1. Samples: 868608. Policy #0 lag: (min: 0.0, avg: 0.9, max: 2.0)
+[2025-08-24 18:39:15,294][22314] Avg episode reward: [(0, '4.606')]
+[2025-08-24 18:39:16,461][22814] Updated weights for policy 0, policy_version 850 (0.0031)
+[2025-08-24 18:39:20,293][22314] Fps is (10 sec: 7782.2, 60 sec: 8806.1, 300 sec: 9261.1). Total num frames: 3506176. Throughput: 0: 2213.1. Samples: 874598. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:39:20,298][22314] Avg episode reward: [(0, '4.232')]
+[2025-08-24 18:39:22,410][22814] Updated weights for policy 0, policy_version 860 (0.0044)
+[2025-08-24 18:39:25,292][22314] Fps is (10 sec: 6963.2, 60 sec: 8669.8, 300 sec: 9261.1). Total num frames: 3538944. Throughput: 0: 2138.8. Samples: 884440. Policy #0 lag: (min: 0.0, avg: 0.9, max: 2.0)
+[2025-08-24 18:39:25,294][22314] Avg episode reward: [(0, '4.455')]
+[2025-08-24 18:39:28,097][22814] Updated weights for policy 0, policy_version 870 (0.0027)
+[2025-08-24 18:39:30,292][22314] Fps is (10 sec: 7374.2, 60 sec: 8533.4, 300 sec: 9275.0). Total num frames: 3579904. Throughput: 0: 2097.5. Samples: 895952. Policy #0 lag: (min: 0.0, avg: 0.9, max: 2.0)
+[2025-08-24 18:39:30,294][22314] Avg episode reward: [(0, '4.426')]
+[2025-08-24 18:39:33,005][22814] Updated weights for policy 0, policy_version 880 (0.0030)
+[2025-08-24 18:39:35,292][22314] Fps is (10 sec: 7782.2, 60 sec: 8396.8, 300 sec: 9247.2). Total num frames: 3616768. Throughput: 0: 2074.6. Samples: 902308. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:39:35,294][22314] Avg episode reward: [(0, '3.970')]
+[2025-08-24 18:39:38,495][22814] Updated weights for policy 0, policy_version 890 (0.0032)
+[2025-08-24 18:39:40,292][22314] Fps is (10 sec: 8192.1, 60 sec: 8396.8, 300 sec: 9219.5). Total num frames: 3661824. Throughput: 0: 2011.0. Samples: 913842. Policy #0 lag: (min: 0.0, avg: 0.9, max: 2.0)
+[2025-08-24 18:39:40,293][22314] Avg episode reward: [(0, '4.334')]
+[2025-08-24 18:39:42,900][22814] Updated weights for policy 0, policy_version 900 (0.0022)
+[2025-08-24 18:39:45,292][22314] Fps is (10 sec: 8601.7, 60 sec: 8328.5, 300 sec: 9219.5). Total num frames: 3702784. Throughput: 0: 1983.5. Samples: 926916. Policy #0 lag: (min: 0.0, avg: 0.9, max: 2.0)
+[2025-08-24 18:39:45,294][22314] Avg episode reward: [(0, '4.366')]
+[2025-08-24 18:39:48,018][22814] Updated weights for policy 0, policy_version 910 (0.0029)
+[2025-08-24 18:39:50,292][22314] Fps is (10 sec: 8191.9, 60 sec: 8192.0, 300 sec: 9205.6). Total num frames: 3743744. Throughput: 0: 1959.8. Samples: 932914. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:39:50,294][22314] Avg episode reward: [(0, '4.174')]
+[2025-08-24 18:39:52,776][22814] Updated weights for policy 0, policy_version 920 (0.0022)
+[2025-08-24 18:39:55,292][22314] Fps is (10 sec: 8601.7, 60 sec: 8123.8, 300 sec: 9191.7). Total num frames: 3788800. Throughput: 0: 1988.1. Samples: 946030. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:39:55,294][22314] Avg episode reward: [(0, '4.510')]
+[2025-08-24 18:39:57,446][22814] Updated weights for policy 0, policy_version 930 (0.0030)
+[2025-08-24 18:40:00,292][22314] Fps is (10 sec: 8601.7, 60 sec: 8055.5, 300 sec: 9150.0). Total num frames: 3829760. Throughput: 0: 2003.0. Samples: 958742. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:40:00,294][22314] Avg episode reward: [(0, '4.434')]
+[2025-08-24 18:40:02,163][22814] Updated weights for policy 0, policy_version 940 (0.0025)
+[2025-08-24 18:40:05,292][22314] Fps is (10 sec: 7782.2, 60 sec: 7987.2, 300 sec: 9094.5). Total num frames: 3866624. Throughput: 0: 2006.7. Samples: 964896. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:40:05,295][22314] Avg episode reward: [(0, '4.515')]
+[2025-08-24 18:40:08,372][22814] Updated weights for policy 0, policy_version 950 (0.0038)
+[2025-08-24 18:40:10,292][22314] Fps is (10 sec: 7372.7, 60 sec: 7919.1, 300 sec: 9025.1). Total num frames: 3903488. Throughput: 0: 2007.6. Samples: 974784. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:40:10,294][22314] Avg episode reward: [(0, '4.295')]
+[2025-08-24 18:40:14,493][22814] Updated weights for policy 0, policy_version 960 (0.0039)
+[2025-08-24 18:40:15,292][22314] Fps is (10 sec: 6963.2, 60 sec: 7782.4, 300 sec: 8969.5). Total num frames: 3936256. Throughput: 0: 1976.8. Samples: 984908. Policy #0 lag: (min: 0.0, avg: 0.7, max: 2.0)
+[2025-08-24 18:40:15,294][22314] Avg episode reward: [(0, '4.216')]
+[2025-08-24 18:40:20,292][22314] Fps is (10 sec: 6553.6, 60 sec: 7714.4, 300 sec: 8900.1). Total num frames: 3969024. Throughput: 0: 1950.5. Samples: 990080. Policy #0 lag: (min: 0.0, avg: 0.8, max: 2.0)
+[2025-08-24 18:40:20,294][22314] Avg episode reward: [(0, '4.393')]
+[2025-08-24 18:40:20,375][22814] Updated weights for policy 0, policy_version 970 (0.0032)
+[2025-08-24 18:40:24,890][22801] Saving /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:40:24,900][22314] Component Batcher_0 stopped!
+[2025-08-24 18:40:24,900][22801] Stopping Batcher_0...
+[2025-08-24 18:40:24,906][22801] Loop batcher_evt_loop terminating...
+[2025-08-24 18:40:24,941][22814] Weights refcount: 2 0
+[2025-08-24 18:40:24,948][22814] Stopping InferenceWorker_p0-w0...
+[2025-08-24 18:40:24,949][22814] Loop inference_proc0-0_evt_loop terminating...
+[2025-08-24 18:40:24,949][22314] Component InferenceWorker_p0-w0 stopped!
+[2025-08-24 18:40:24,968][22837] Stopping RolloutWorker_w6...
+[2025-08-24 18:40:24,968][22314] Component RolloutWorker_w6 stopped!
+[2025-08-24 18:40:24,972][22837] Loop rollout_proc6_evt_loop terminating...
+[2025-08-24 18:40:24,972][22838] Stopping RolloutWorker_w7...
+[2025-08-24 18:40:24,973][22838] Loop rollout_proc7_evt_loop terminating...
+[2025-08-24 18:40:24,974][22818] Stopping RolloutWorker_w3...
+[2025-08-24 18:40:24,975][22818] Loop rollout_proc3_evt_loop terminating...
+[2025-08-24 18:40:24,979][22834] Stopping RolloutWorker_w4...
+[2025-08-24 18:40:24,979][22834] Loop rollout_proc4_evt_loop terminating...
+[2025-08-24 18:40:24,980][22817] Stopping RolloutWorker_w2...
+[2025-08-24 18:40:24,981][22817] Loop rollout_proc2_evt_loop terminating...
+[2025-08-24 18:40:24,981][22816] Stopping RolloutWorker_w1...
+[2025-08-24 18:40:24,982][22816] Loop rollout_proc1_evt_loop terminating...
+[2025-08-24 18:40:24,984][22835] Stopping RolloutWorker_w5...
+[2025-08-24 18:40:24,985][22835] Loop rollout_proc5_evt_loop terminating...
+[2025-08-24 18:40:24,974][22314] Component RolloutWorker_w7 stopped!
+[2025-08-24 18:40:24,991][22314] Component RolloutWorker_w3 stopped!
+[2025-08-24 18:40:24,994][22314] Component RolloutWorker_w4 stopped!
+[2025-08-24 18:40:24,996][22314] Component RolloutWorker_w2 stopped!
+[2025-08-24 18:40:24,997][22314] Component RolloutWorker_w1 stopped!
+[2025-08-24 18:40:24,999][22314] Component RolloutWorker_w5 stopped!
+[2025-08-24 18:40:25,013][22815] Stopping RolloutWorker_w0...
+[2025-08-24 18:40:25,014][22815] Loop rollout_proc0_evt_loop terminating...
+[2025-08-24 18:40:25,013][22314] Component RolloutWorker_w0 stopped!
+[2025-08-24 18:40:25,070][22801] Removing /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000493_2019328.pth
+[2025-08-24 18:40:25,081][22801] Saving /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:40:25,256][22801] Stopping LearnerWorker_p0...
+[2025-08-24 18:40:25,257][22801] Loop learner_proc0_evt_loop terminating...
+[2025-08-24 18:40:25,257][22314] Component LearnerWorker_p0 stopped!
+[2025-08-24 18:40:25,261][22314] Waiting for process learner_proc0 to stop...
+[2025-08-24 18:40:27,251][22314] Waiting for process inference_proc0-0 to join...
+[2025-08-24 18:40:27,253][22314] Waiting for process rollout_proc0 to join...
+[2025-08-24 18:40:27,255][22314] Waiting for process rollout_proc1 to join...
+[2025-08-24 18:40:27,257][22314] Waiting for process rollout_proc2 to join...
+[2025-08-24 18:40:27,259][22314] Waiting for process rollout_proc3 to join...
+[2025-08-24 18:40:27,260][22314] Waiting for process rollout_proc4 to join...
+[2025-08-24 18:40:27,262][22314] Waiting for process rollout_proc5 to join...
+[2025-08-24 18:40:27,264][22314] Waiting for process rollout_proc6 to join...
+[2025-08-24 18:40:27,266][22314] Waiting for process rollout_proc7 to join...
+[2025-08-24 18:40:27,268][22314] Batcher 0 profile tree view:
+batching: 18.0026, releasing_batches: 0.0497
+[2025-08-24 18:40:27,270][22314] InferenceWorker_p0-w0 profile tree view:
+wait_policy: 0.0001
+  wait_policy_total: 6.6832
+update_model: 8.2570
+  weight_update: 0.0038
+one_step: 0.0132
+  handle_policy_step: 419.9654
+    deserialize: 14.5882, stack: 2.8454, obs_to_device_normalize: 104.2409, forward: 185.7047, send_messages: 39.8577
+    prepare_outputs: 56.7150
+      to_cpu: 41.0715
+[2025-08-24 18:40:27,271][22314] Learner 0 profile tree view:
+misc: 0.0058, prepare_batch: 14.6209
+train: 49.6287
+  epoch_init: 0.0079, minibatch_init: 0.0117, losses_postprocess: 0.6793, kl_divergence: 0.8223, after_optimizer: 13.7673
+  calculate_losses: 20.2579
+    losses_init: 0.0043, forward_head: 1.7738, bptt_initial: 12.2704, tail: 1.1439, advantages_returns: 0.3356, losses: 2.1770
+    bptt: 2.2604
+      bptt_forward_core: 2.1293
+  update: 13.3471
+    clip: 1.3706
+[2025-08-24 18:40:27,273][22314] RolloutWorker_w0 profile tree view:
+wait_for_trajectories: 0.2174, enqueue_policy_requests: 13.2016, env_step: 190.0232, overhead: 11.3236, complete_rollouts: 0.4466
+save_policy_outputs: 15.6623
+  split_output_tensors: 5.3806
+[2025-08-24 18:40:27,274][22314] RolloutWorker_w7 profile tree view:
+wait_for_trajectories: 0.2138, enqueue_policy_requests: 12.5841, env_step: 188.6272, overhead: 10.1826, complete_rollouts: 0.4320
+save_policy_outputs: 15.1798
+  split_output_tensors: 5.2640
+[2025-08-24 18:40:27,276][22314] Loop Runner_EvtLoop terminating...
+[2025-08-24 18:40:27,278][22314] Runner profile tree view:
+main_loop: 466.0443
+[2025-08-24 18:40:27,280][22314] Collected {0: 4005888}, FPS: 8595.5
+[2025-08-24 18:48:50,120][22314] Loading existing experiment configuration from /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/config.json
+[2025-08-24 18:48:50,122][22314] Overriding arg 'num_workers' with value 1 passed from command line
+[2025-08-24 18:48:50,123][22314] Adding new argument 'no_render'=True that is not in the saved config file!
+[2025-08-24 18:48:50,124][22314] Adding new argument 'save_video'=True that is not in the saved config file!
+[2025-08-24 18:48:50,125][22314] Adding new argument 'video_frames'=1000000000.0 that is not in the saved config file!
+[2025-08-24 18:48:50,126][22314] Adding new argument 'video_name'=None that is not in the saved config file!
+[2025-08-24 18:48:50,127][22314] Adding new argument 'max_num_frames'=1000000000.0 that is not in the saved config file!
+[2025-08-24 18:48:50,127][22314] Adding new argument 'max_num_episodes'=10 that is not in the saved config file!
+[2025-08-24 18:48:50,128][22314] Adding new argument 'push_to_hub'=False that is not in the saved config file!
+[2025-08-24 18:48:50,129][22314] Adding new argument 'hf_repository'=None that is not in the saved config file!
+[2025-08-24 18:48:50,129][22314] Adding new argument 'policy_index'=0 that is not in the saved config file!
+[2025-08-24 18:48:50,130][22314] Adding new argument 'eval_deterministic'=False that is not in the saved config file!
+[2025-08-24 18:48:50,131][22314] Adding new argument 'train_script'=None that is not in the saved config file!
+[2025-08-24 18:48:50,131][22314] Adding new argument 'enjoy_script'=None that is not in the saved config file!
+[2025-08-24 18:48:50,132][22314] Using frameskip 1 and render_action_repeat=4 for evaluation
+[2025-08-24 18:48:50,165][22314] Doom resolution: 160x120, resize resolution: (128, 72)
+[2025-08-24 18:48:50,169][22314] RunningMeanStd input shape: (3, 72, 128)
+[2025-08-24 18:48:50,173][22314] RunningMeanStd input shape: (1,)
+[2025-08-24 18:48:50,192][22314] ConvEncoder: input_channels=3
+[2025-08-24 18:48:50,395][22314] Conv encoder output size: 512
+[2025-08-24 18:48:50,397][22314] Policy head output size: 512
+[2025-08-24 18:48:51,237][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:48:51,244][22314] Could not load from checkpoint, attempt 0
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1529, in load
+    raise pickle.UnpicklingError(_get_wo_message(str(e))) from None
+_pickle.UnpicklingError: Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL numpy.core.multiarray.scalar was not an allowed global by default. Please use `torch.serialization.add_safe_globals([numpy.core.multiarray.scalar])` or the `torch.serialization.safe_globals([numpy.core.multiarray.scalar])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+[2025-08-24 18:48:51,247][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:48:51,249][22314] Could not load from checkpoint, attempt 1
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1529, in load
+    raise pickle.UnpicklingError(_get_wo_message(str(e))) from None
+_pickle.UnpicklingError: Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL numpy.core.multiarray.scalar was not an allowed global by default. Please use `torch.serialization.add_safe_globals([numpy.core.multiarray.scalar])` or the `torch.serialization.safe_globals([numpy.core.multiarray.scalar])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+[2025-08-24 18:48:51,250][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:48:51,252][22314] Could not load from checkpoint, attempt 2
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1529, in load
+    raise pickle.UnpicklingError(_get_wo_message(str(e))) from None
+_pickle.UnpicklingError: Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL numpy.core.multiarray.scalar was not an allowed global by default. Please use `torch.serialization.add_safe_globals([numpy.core.multiarray.scalar])` or the `torch.serialization.safe_globals([numpy.core.multiarray.scalar])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+[2025-08-24 18:51:13,652][22314] Loading existing experiment configuration from /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/config.json
+[2025-08-24 18:51:13,653][22314] Overriding arg 'num_workers' with value 1 passed from command line
+[2025-08-24 18:51:13,654][22314] Adding new argument 'no_render'=True that is not in the saved config file!
+[2025-08-24 18:51:13,655][22314] Adding new argument 'save_video'=True that is not in the saved config file!
+[2025-08-24 18:51:13,656][22314] Adding new argument 'video_frames'=1000000000.0 that is not in the saved config file!
+[2025-08-24 18:51:13,658][22314] Adding new argument 'video_name'=None that is not in the saved config file!
+[2025-08-24 18:51:13,659][22314] Adding new argument 'max_num_frames'=1000000000.0 that is not in the saved config file!
+[2025-08-24 18:51:13,659][22314] Adding new argument 'max_num_episodes'=10 that is not in the saved config file!
+[2025-08-24 18:51:13,660][22314] Adding new argument 'push_to_hub'=False that is not in the saved config file!
+[2025-08-24 18:51:13,662][22314] Adding new argument 'hf_repository'=None that is not in the saved config file!
+[2025-08-24 18:51:13,663][22314] Adding new argument 'policy_index'=0 that is not in the saved config file!
+[2025-08-24 18:51:13,664][22314] Adding new argument 'eval_deterministic'=False that is not in the saved config file!
+[2025-08-24 18:51:13,665][22314] Adding new argument 'train_script'=None that is not in the saved config file!
+[2025-08-24 18:51:13,666][22314] Adding new argument 'enjoy_script'=None that is not in the saved config file!
+[2025-08-24 18:51:13,667][22314] Using frameskip 1 and render_action_repeat=4 for evaluation
+[2025-08-24 18:51:13,702][22314] RunningMeanStd input shape: (3, 72, 128)
+[2025-08-24 18:51:13,704][22314] RunningMeanStd input shape: (1,)
+[2025-08-24 18:51:13,721][22314] ConvEncoder: input_channels=3
+[2025-08-24 18:51:13,791][22314] Conv encoder output size: 512
+[2025-08-24 18:51:13,793][22314] Policy head output size: 512
+[2025-08-24 18:51:13,831][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:51:13,834][22314] Could not load from checkpoint, attempt 0
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 18:51:13,839][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:51:13,841][22314] Could not load from checkpoint, attempt 1
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 18:51:13,843][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:51:13,845][22314] Could not load from checkpoint, attempt 2
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 18:54:07,775][22314] Loading existing experiment configuration from /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/config.json
+[2025-08-24 18:54:07,778][22314] Overriding arg 'num_workers' with value 1 passed from command line
+[2025-08-24 18:54:07,779][22314] Adding new argument 'no_render'=True that is not in the saved config file!
+[2025-08-24 18:54:07,781][22314] Adding new argument 'save_video'=True that is not in the saved config file!
+[2025-08-24 18:54:07,782][22314] Adding new argument 'video_frames'=1000000000.0 that is not in the saved config file!
+[2025-08-24 18:54:07,784][22314] Adding new argument 'video_name'=None that is not in the saved config file!
+[2025-08-24 18:54:07,785][22314] Adding new argument 'max_num_frames'=1000000000.0 that is not in the saved config file!
+[2025-08-24 18:54:07,786][22314] Adding new argument 'max_num_episodes'=10 that is not in the saved config file!
+[2025-08-24 18:54:07,788][22314] Adding new argument 'push_to_hub'=False that is not in the saved config file!
+[2025-08-24 18:54:07,789][22314] Adding new argument 'hf_repository'=None that is not in the saved config file!
+[2025-08-24 18:54:07,791][22314] Adding new argument 'policy_index'=0 that is not in the saved config file!
+[2025-08-24 18:54:07,792][22314] Adding new argument 'eval_deterministic'=False that is not in the saved config file!
+[2025-08-24 18:54:07,794][22314] Adding new argument 'train_script'=None that is not in the saved config file!
+[2025-08-24 18:54:07,798][22314] Adding new argument 'enjoy_script'=None that is not in the saved config file!
+[2025-08-24 18:54:07,799][22314] Using frameskip 1 and render_action_repeat=4 for evaluation
+[2025-08-24 18:54:07,838][22314] RunningMeanStd input shape: (3, 72, 128)
+[2025-08-24 18:54:07,840][22314] RunningMeanStd input shape: (1,)
+[2025-08-24 18:54:07,856][22314] ConvEncoder: input_channels=3
+[2025-08-24 18:54:07,908][22314] Conv encoder output size: 512
+[2025-08-24 18:54:07,910][22314] Policy head output size: 512
+[2025-08-24 18:54:07,940][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:54:07,945][22314] Could not load from checkpoint, attempt 0
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 18:54:07,950][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:54:07,952][22314] Could not load from checkpoint, attempt 1
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 18:54:07,955][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:54:07,957][22314] Could not load from checkpoint, attempt 2
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 18:58:07,932][22314] Loading existing experiment configuration from /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/config.json
+[2025-08-24 18:58:07,934][22314] Overriding arg 'num_workers' with value 1 passed from command line
+[2025-08-24 18:58:07,935][22314] Adding new argument 'no_render'=True that is not in the saved config file!
+[2025-08-24 18:58:07,936][22314] Adding new argument 'save_video'=True that is not in the saved config file!
+[2025-08-24 18:58:07,936][22314] Adding new argument 'video_frames'=1000000000.0 that is not in the saved config file!
+[2025-08-24 18:58:07,937][22314] Adding new argument 'video_name'=None that is not in the saved config file!
+[2025-08-24 18:58:07,939][22314] Adding new argument 'max_num_frames'=1000000000.0 that is not in the saved config file!
+[2025-08-24 18:58:07,941][22314] Adding new argument 'max_num_episodes'=10 that is not in the saved config file!
+[2025-08-24 18:58:07,942][22314] Adding new argument 'push_to_hub'=False that is not in the saved config file!
+[2025-08-24 18:58:07,943][22314] Adding new argument 'hf_repository'=None that is not in the saved config file!
+[2025-08-24 18:58:07,945][22314] Adding new argument 'policy_index'=0 that is not in the saved config file!
+[2025-08-24 18:58:07,945][22314] Adding new argument 'eval_deterministic'=False that is not in the saved config file!
+[2025-08-24 18:58:07,946][22314] Adding new argument 'train_script'=None that is not in the saved config file!
+[2025-08-24 18:58:07,949][22314] Adding new argument 'enjoy_script'=None that is not in the saved config file!
+[2025-08-24 18:58:07,950][22314] Using frameskip 1 and render_action_repeat=4 for evaluation
+[2025-08-24 18:58:08,001][22314] RunningMeanStd input shape: (3, 72, 128)
+[2025-08-24 18:58:08,004][22314] RunningMeanStd input shape: (1,)
+[2025-08-24 18:58:08,017][22314] ConvEncoder: input_channels=3
+[2025-08-24 18:58:08,073][22314] Conv encoder output size: 512
+[2025-08-24 18:58:08,075][22314] Policy head output size: 512
+[2025-08-24 18:58:08,113][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:58:08,117][22314] Could not load from checkpoint, attempt 0
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 18:58:08,120][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:58:08,122][22314] Could not load from checkpoint, attempt 1
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 18:58:08,125][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:58:08,128][22314] Could not load from checkpoint, attempt 2
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 18:58:17,446][22314] Loading existing experiment configuration from /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/config.json
+[2025-08-24 18:58:17,447][22314] Overriding arg 'num_workers' with value 1 passed from command line
+[2025-08-24 18:58:17,449][22314] Adding new argument 'no_render'=True that is not in the saved config file!
+[2025-08-24 18:58:17,450][22314] Adding new argument 'save_video'=True that is not in the saved config file!
+[2025-08-24 18:58:17,450][22314] Adding new argument 'video_frames'=1000000000.0 that is not in the saved config file!
+[2025-08-24 18:58:17,451][22314] Adding new argument 'video_name'=None that is not in the saved config file!
+[2025-08-24 18:58:17,453][22314] Adding new argument 'max_num_frames'=1000000000.0 that is not in the saved config file!
+[2025-08-24 18:58:17,454][22314] Adding new argument 'max_num_episodes'=10 that is not in the saved config file!
+[2025-08-24 18:58:17,455][22314] Adding new argument 'push_to_hub'=False that is not in the saved config file!
+[2025-08-24 18:58:17,456][22314] Adding new argument 'hf_repository'=None that is not in the saved config file!
+[2025-08-24 18:58:17,456][22314] Adding new argument 'policy_index'=0 that is not in the saved config file!
+[2025-08-24 18:58:17,457][22314] Adding new argument 'eval_deterministic'=False that is not in the saved config file!
+[2025-08-24 18:58:17,458][22314] Adding new argument 'train_script'=None that is not in the saved config file!
+[2025-08-24 18:58:17,459][22314] Adding new argument 'enjoy_script'=None that is not in the saved config file!
+[2025-08-24 18:58:17,460][22314] Using frameskip 1 and render_action_repeat=4 for evaluation
+[2025-08-24 18:58:17,488][22314] RunningMeanStd input shape: (3, 72, 128)
+[2025-08-24 18:58:17,489][22314] RunningMeanStd input shape: (1,)
+[2025-08-24 18:58:17,499][22314] ConvEncoder: input_channels=3
+[2025-08-24 18:58:17,538][22314] Conv encoder output size: 512
+[2025-08-24 18:58:17,540][22314] Policy head output size: 512
+[2025-08-24 18:58:17,571][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:58:17,573][22314] Could not load from checkpoint, attempt 0
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 18:58:17,575][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:58:17,577][22314] Could not load from checkpoint, attempt 1
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 18:58:17,579][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 18:58:17,581][22314] Could not load from checkpoint, attempt 2
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 19:27:37,397][22314] Loading existing experiment configuration from /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/config.json
+[2025-08-24 19:27:37,399][22314] Overriding arg 'num_workers' with value 1 passed from command line
+[2025-08-24 19:27:37,399][22314] Adding new argument 'no_render'=True that is not in the saved config file!
+[2025-08-24 19:27:37,400][22314] Adding new argument 'save_video'=True that is not in the saved config file!
+[2025-08-24 19:27:37,401][22314] Adding new argument 'video_frames'=1000000000.0 that is not in the saved config file!
+[2025-08-24 19:27:37,401][22314] Adding new argument 'video_name'=None that is not in the saved config file!
+[2025-08-24 19:27:37,402][22314] Adding new argument 'max_num_frames'=1000000000.0 that is not in the saved config file!
+[2025-08-24 19:27:37,402][22314] Adding new argument 'max_num_episodes'=10 that is not in the saved config file!
+[2025-08-24 19:27:37,403][22314] Adding new argument 'push_to_hub'=False that is not in the saved config file!
+[2025-08-24 19:27:37,404][22314] Adding new argument 'hf_repository'=None that is not in the saved config file!
+[2025-08-24 19:27:37,404][22314] Adding new argument 'policy_index'=0 that is not in the saved config file!
+[2025-08-24 19:27:37,405][22314] Adding new argument 'eval_deterministic'=False that is not in the saved config file!
+[2025-08-24 19:27:37,406][22314] Adding new argument 'train_script'=None that is not in the saved config file!
+[2025-08-24 19:27:37,408][22314] Adding new argument 'enjoy_script'=None that is not in the saved config file!
+[2025-08-24 19:27:37,409][22314] Using frameskip 1 and render_action_repeat=4 for evaluation
+[2025-08-24 19:27:37,438][22314] RunningMeanStd input shape: (3, 72, 128)
+[2025-08-24 19:27:37,441][22314] RunningMeanStd input shape: (1,)
+[2025-08-24 19:27:37,453][22314] ConvEncoder: input_channels=3
+[2025-08-24 19:27:37,493][22314] Conv encoder output size: 512
+[2025-08-24 19:27:37,495][22314] Policy head output size: 512
+[2025-08-24 19:27:37,517][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 19:27:37,521][22314] Could not load from checkpoint, attempt 0
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 19:27:37,523][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 19:27:37,525][22314] Could not load from checkpoint, attempt 1
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
+[2025-08-24 19:27:37,527][22314] Loading state from checkpoint /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment/checkpoint_p0/checkpoint_000000978_4005888.pth...
+[2025-08-24 19:27:37,529][22314] Could not load from checkpoint, attempt 2
+Traceback (most recent call last):
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/sample_factory/algo/learning/learner.py", line 281, in load_checkpoint
+    checkpoint_dict = torch.load(latest_checkpoint, map_location=device)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 1521, in load
+    return _load(
+           ^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/serialization.py", line 2119, in _load
+    result = unpickler.load()
+             ^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 337, in load
+    elif full_path in _get_user_allowed_globals():
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luckye/_DevelopmentCode/huggingface_doom/sf_env/lib/python3.12/site-packages/torch/_weights_only_unpickler.py", line 144, in _get_user_allowed_globals
+    module, name = f.__module__, f.__qualname__
+                   ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute '__module__'. Did you mean: '__mod__'?
