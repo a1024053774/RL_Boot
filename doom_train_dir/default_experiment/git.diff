@@ -1,0 +1,209 @@
+diff --git a/Hugging_Face/notebooks/unit8-part2-Doom/unit8_part2.ipynb b/Hugging_Face/notebooks/unit8-part2-Doom/unit8_part2.ipynb
+index bda29bc..562cfe3 100644
+--- a/Hugging_Face/notebooks/unit8-part2-Doom/unit8_part2.ipynb
++++ b/Hugging_Face/notebooks/unit8-part2-Doom/unit8_part2.ipynb
+@@ -240,14 +240,14 @@
+     },
+     {
+       "cell_type": "code",
+-      "source": [
+-        "!pip install sample-factory==2.1.1"
+-      ],
++      "execution_count": null,
+       "metadata": {
+         "id": "alxUt7Au-O8e"
+       },
+-      "execution_count": null,
+-      "outputs": []
++      "outputs": [],
++      "source": [
++        "!pip install sample-factory==2.1.1"
++      ]
+     },
+     {
+       "cell_type": "markdown",
+@@ -260,7 +260,7 @@
+     },
+     {
+       "cell_type": "code",
+-      "execution_count": null,
++      "execution_count": 1,
+       "metadata": {
+         "id": "bCgZbeiavcDU"
+       },
+@@ -352,7 +352,24 @@
+       "metadata": {
+         "id": "y_TeicMvyKHP"
+       },
+-      "outputs": [],
++      "outputs": [
++        {
++          "name": "stderr",
++          "output_type": "stream",
++          "text": [
++            "\u001b[36m[2025-08-24 18:32:35,257][22314] register_encoder_factory: <function make_vizdoom_encoder at 0x7fed145c0220>\u001b[0m\n",
++            "\u001b[33m[2025-08-24 18:32:35,271][22314] Saved parameter configuration for experiment default_experiment not found!\u001b[0m\n",
++            "\u001b[33m[2025-08-24 18:32:35,273][22314] Starting experiment from scratch!\u001b[0m\n",
++            "\u001b[36m[2025-08-24 18:32:35,283][22314] Experiment dir /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment already exists!\u001b[0m\n",
++            "\u001b[36m[2025-08-24 18:32:35,284][22314] Resuming existing experiment from /home/luckye/_DevelopmentCode/RL_Boot/train_dir/default_experiment...\u001b[0m\n",
++            "\u001b[36m[2025-08-24 18:32:35,285][22314] Weights and Biases integration disabled\u001b[0m\n",
++            "\u001b[36m[2025-08-24 18:32:38,518][22314] Queried available GPUs: 0\n",
++            "\u001b[0m\n",
++            "\u001b[37m\u001b[1m[2025-08-24 18:32:38,519][22314] Environment var CUDA_VISIBLE_DEVICES is 0\n",
++            "\u001b[0m\n"
++          ]
++        }
++      ],
+       "source": [
+         "## 开始训练，这大约需要 15 分钟\n",
+         "register_vizdoom_components()\n",
+@@ -418,12 +435,12 @@
+     },
+     {
+       "cell_type": "markdown",
+-      "source": [
+-        "智能体学到了一些东西，但它的表现还可以更好。我们显然需要训练更长的时间。不过，让我们先把这个模型上传到 Hub。"
+-      ],
+       "metadata": {
+         "id": "2A4pf_1VwPqR"
+-      }
++      },
++      "source": [
++        "智能体学到了一些东西，但它的表现还可以更好。我们显然需要训练更长的时间。不过，让我们先把这个模型上传到 Hub。"
++      ]
+     },
+     {
+       "cell_type": "markdown",
+@@ -495,14 +512,14 @@
+     },
+     {
+       "cell_type": "markdown",
++      "metadata": {
++        "id": "9PzeXx-qxVvw"
++      },
+       "source": [
+         "## 让我们加载另一个模型\n",
+         "\n",
+         "\n"
+-      ],
+-      "metadata": {
+-        "id": "9PzeXx-qxVvw"
+-      }
++      ]
+     },
+     {
+       "cell_type": "markdown",
+@@ -568,16 +585,16 @@
+     },
+     {
+       "cell_type": "markdown",
++      "metadata": {
++        "id": "ie5YWC3NyKO8"
++      },
+       "source": [
+         "## 一些额外挑战 🏆：Doom 死亡竞赛\n",
+         "\n",
+         "训练一个能玩 Doom 死亡竞赛的智能体**需要在一台比 Colab 中可用机器配置更强的机器上花费数小时**。\n",
+         "\n",
+         "幸运的是，我们**已经在这个场景中训练好了一个智能体，并且它可以在 🤗 Hub 上找到！** 让我们下载模型并可视化智能体的表现。"
+-      ],
+-      "metadata": {
+-        "id": "ie5YWC3NyKO8"
+-      }
++      ]
+     },
+     {
+       "cell_type": "code",
+@@ -593,12 +610,12 @@
+     },
+     {
+       "cell_type": "markdown",
+-      "source": [
+-        "由于智能体游戏时间很长，视频生成可能需要**10分钟**。"
+-      ],
+       "metadata": {
+         "id": "7AX_LwxR2FQ0"
+-      }
++      },
++      "source": [
++        "由于智能体游戏时间很长，视频生成可能需要**10分钟**。"
++      ]
+     },
+     {
+       "cell_type": "code",
+@@ -625,17 +642,20 @@
+     },
+     {
+       "cell_type": "markdown",
++      "metadata": {
++        "id": "N6mEC-4zyihx"
++      },
+       "source": [
+         "\n",
+         "您**可以尝试使用上面的代码在这个环境中训练您的智能体**，但不能在 Colab 上进行。\n",
+         "**祝您好运 🤞**"
+-      ],
+-      "metadata": {
+-        "id": "N6mEC-4zyihx"
+-      }
++      ]
+     },
+     {
+       "cell_type": "markdown",
++      "metadata": {
++        "id": "YnDAngN6zeeI"
++      },
+       "source": [
+         "如果您喜欢更简单的场景，**为什么不尝试在另一个 ViZDoom 场景中进行训练，例如 `doom_deadly_corridor` 或 `doom_defend_the_center`。**\n",
+         "\n",
+@@ -647,33 +667,40 @@
+         "最后一个单元到此结束。但我们还没有完！ 🤗 接下来的**附加部分将包含深度强化学习中一些最有趣、最前沿和最尖端的工作**。\n",
+         "\n",
+         "## 保持学习，保持出色 🤗"
+-      ],
+-      "metadata": {
+-        "id": "YnDAngN6zeeI"
+-      }
++      ]
+     }
+   ],
+   "metadata": {
+     "accelerator": "GPU",
+     "colab": {
+-      "provenance": [],
+       "collapsed_sections": [
+         "PU4FVzaoM6fC",
+         "nB68Eb9UgC94",
+         "ez5UhUtYcWXF",
+         "sgRy6wnrgnij"
+       ],
+-      "private_outputs": true
++      "private_outputs": true,
++      "provenance": []
+     },
+     "gpuClass": "standard",
+     "kernelspec": {
+-      "display_name": "Python 3",
++      "display_name": "Python 3 (ipykernel)",
++      "language": "python",
+       "name": "python3"
+     },
+     "language_info": {
+-      "name": "python"
++      "codemirror_mode": {
++        "name": "ipython",
++        "version": 3
++      },
++      "file_extension": ".py",
++      "mimetype": "text/x-python",
++      "name": "python",
++      "nbconvert_exporter": "python",
++      "pygments_lexer": "ipython3",
++      "version": "3.12.3"
+     }
+   },
+   "nbformat": 4,
+   "nbformat_minor": 0
+-}
+\ No newline at end of file
++}
