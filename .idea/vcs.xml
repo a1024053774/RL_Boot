@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Hands-on_Learning_RL/Chapter20/ma-gym" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Hands-on_Learning_RL/Chapter21/multiagent-particle-envs" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Hugging_Face/notebooks/unit7/ml-agents" vcs="Git" />
   </component>
 </project>
