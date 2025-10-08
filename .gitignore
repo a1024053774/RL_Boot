@@ -12,3 +12,5 @@ Pytorch/nn/logs
 /runs
 /runs_cartpole
 /Hands-on_Learning_RL/Chapter21/multiagent-particle-envs
+/Hands-on_Learning_RL/Chapter20/ma-gym
+/Hugging_Face/notebooks/unit7/ml-agents
